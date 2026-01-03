@@ -4,14 +4,14 @@
 
 - [Description](#description)
 - [Installation Instructions](#installation-instructions)
-- [Usage and Screenshots](#usage-and-screenshots)
+- [Usage](#usage)
 - [Technologies Used](#technologies-used)
 - [Dependencies and Credits](#dependencies-and-credits)
 - [Project Structure](#project-structure)
 
 ## Description
 
-This is the backend for my social media website project that I built for [The Odin Project](https://www.theodinproject.com). It is a RESTful API that can be used per the endpoint instructions below. Please note that to use it yourself you'll need to clone this repo and update the allowList in app.js.
+This is the backend for my social media website project that I built for [The Odin Project](https://www.theodinproject.com). It is a RESTful API that uses JSON web tokens for authentication and authorization; it can be used per the endpoint instructions below. Please note that to use it yourself you'll need to clone this repo and update the allowList in app.js.
 
 ## Installation Instructions
 
@@ -19,38 +19,38 @@ This is the backend for my social media website project that I built for [The Od
 2. cd into the project root directory (where the README.md file is located)
 3. Run the following in your terminal (I've found that separating them into smaller install blocks helps when your internet is slower)
 
-   - ```bash
-     npm init -y
-     npm install
-     ```
+    - ```bash
+      npm init -y
+      npm install
+      ```
 
 4. Create a .env file
-   - ```bash
-     NODE_ENV=development
-     TEST_DATABASE_URL="your_local_test_database_url"
-     DATABASE_URL="your_local_database_url"
-     SECRET_KEY="your_secret_key"
-     ```
-5. ```bash
-   npm run dev
-   ```
+    - ```bash
+      NODE_ENV=development
+      TEST_DATABASE_URL="your_local_test_database_url"
+      DATABASE_URL="your_local_database_url"
+      SECRET_KEY="your_secret_key"
+      ```
+5.  ```bash
+    npm run dev
+    ```
 6. After making updates to ./src/queries.ts you'll want to run this to recompile queries.js
-   - ```bash
-     npx tsc
-     ```
+    - ```bash
+      npx tsc
+      ```
+1.  Be sure to test the API regularly
+    - ```bash
+      npm run test
+      ```
 
-## Usage and Screenshots
+## Usage
 
-<img src="./public/screenshot.png" alt="screenshot" style="height: 50vh; width: auto;">
-
-This backend is a RESTful API that uses JSON web tokens for authentication and authorization.
-
-- API Base URL: https://odin-book-backend.onrender.com
 - [Frontend repo](https://github.com/aRav3n/odin_book_frontend)
-- [Live Preview](https://odin-book-frontend-8xo.pages.dev)
 
 ### API Usage
 
+- **API Base URL**
+  - https://odin-book-backend.onrender.com
 - **Auth Header Note**
   - Most routes require a JSON Web Token
     - Correct format:
@@ -321,13 +321,41 @@ This backend is a RESTful API that uses JSON web tokens for authentication and a
 ## Project Structure
 
 ```bash
-├──controllers/            # Controller and internal security functions
-├──db/                     # queries.js is automatically placed here after running npx tsc
+├──controllers/
+   ├──commentController.js
+   ├──followController.js
+   ├──internalFunctions.js
+   ├──likeController.js
+   ├──postController.js
+   ├──profileController.js
+   ├──securityController.js
+   ├──userController.js
+   └──wakeupController.js
+├──db/
+   └──queries.js             # Automatically placed here after running `npx tsc`
 ├──generated/
-    ├── prisma/            # Prisma generated models
-├──prisma/                 # Prisma models and migrations
-├──public/                 # Public image(s)
-├──routes/                 # Router file(s)
-├──src/                    # queries.ts
-├──test/                   # Contains all test files and internal test function files
+   ├──prisma/                # Prisma generated models
+├──prisma/
+   ├──migrations/
+   └──schema.prisma
+├──routes/
+   └──router.js
+├──src/
+   └──queries.ts             # Database queries
+├──test/
+   ├──comment.test.js
+   ├──follow.test.js
+   ├──internalTestFunctions.js
+   ├──like.test.js
+   ├──post.test.js
+   ├──profile.test.js
+   └──user.test.js
+├──.gitignore
+├──LICENSE
+├──README.md
+├──app.js
+├──notes.txt
+├──package-lock.json
+├──package.json
+└──tsconfig.json
 ```
